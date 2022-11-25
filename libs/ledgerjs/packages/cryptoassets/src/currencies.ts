@@ -3464,9 +3464,9 @@ const prodCryptoArray: CryptoCurrency[] = [];
 const cryptocurrenciesArrayWithoutTerminated: CryptoCurrency[] = [];
 const prodCryptoArrayWithoutTerminated: CryptoCurrency[] = [];
 
-Object.values(cryptocurrenciesById).forEach((cryptoCurrency) => {
+for (const cryptoCurrency of Object.values(cryptocurrenciesById)) {
   registerCryptoCurrency(cryptoCurrency);
-});
+}
 
 /**
  *
