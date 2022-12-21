@@ -351,7 +351,7 @@ describe("swap/utils/getProviderName", () => {
 
 describe("swap/utils/getNoticeType", function () {
   test("should return notice type for CIC", () => {
-    const expectedResult = { message: "cic", learnMore: false };
+    const expectedResult = { message: "provider", learnMore: false };
 
     const result = getNoticeType("cic");
 
@@ -367,7 +367,7 @@ describe("swap/utils/getNoticeType", function () {
   });
 
   test("should return notice type for Changelly", () => {
-    const expectedResult = { message: "default", learnMore: true };
+    const expectedResult = { message: "provider", learnMore: false };
 
     const result = getNoticeType("changelly");
 
