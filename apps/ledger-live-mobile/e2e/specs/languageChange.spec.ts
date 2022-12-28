@@ -17,10 +17,6 @@ describe("Change Language", () => {
     generalSettingsPage = new GeneralSettingsPage();
   });
 
-  it("should open on Portofolio page", async () => {
-    await expect(portfolioPage.getSettingsButton()).toBeVisible();
-  });
-
   it("should go to Settings", async () => {
     await portfolioPage.navigateToSettings();
   });
