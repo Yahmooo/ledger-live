@@ -24,8 +24,7 @@ export const WORKFLOWS = {
     checkRunName: "[Desktop] Build the app (external)",
     description:
       "Build the Ledger Live Desktop application on all platforms and attach the binaries to the workflow run.",
-    runsOn: RUNNERS.internal,
-    // runsOn: RUNNERS.external,
+    runsOn: RUNNERS.external,
     affected: ["ledger-live-desktop"],
     summaryFile: "summary.json",
     getInputs: (payload: any) => {
