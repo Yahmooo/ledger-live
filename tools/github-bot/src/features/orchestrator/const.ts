@@ -27,7 +27,7 @@ export const WORKFLOWS = {
     runsOn: RUNNERS.internal,
     // runsOn: RUNNERS.external,
     affected: ["ledger-live-desktop"],
-    summaryFile: "",
+    summaryFile: "summary.json",
     getInputs: (payload: any) => {
       return {
         sha: payload.workflow_run.head_sha,
