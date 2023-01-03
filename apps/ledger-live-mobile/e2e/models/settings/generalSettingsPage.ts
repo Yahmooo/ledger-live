@@ -1,4 +1,9 @@
-import { getElementById, getElementByText, tapByElement } from "../../helpers";
+import {
+  getElementById,
+  getElementByText,
+  tapByElement,
+  tapByText,
+} from "../../helpers";
 
 export default class GeneralSettingsPage {
   getPasswordSettingsSwitch = () => getElementById("password-settings-switch");
@@ -6,9 +11,10 @@ export default class GeneralSettingsPage {
   getPreferredCurrency = () => getElementByText("Preferred currency");
   getConfirm = () => getElementByText("Confirm");
   getEnterLanguageMenu = () => getElementById("language-button");
-  frenchButton = () => getElementByText("Français");
+
+  language = (lang: string) => getElementByText(lang);
   isEnglish = () => getElementByText("General");
-  isFrench = () => getElementByText("Général");
+  isLocalized = (localization: string) => getElementByText(localization);
 
   async togglePassword() {
     await this.getPasswordSettingsSwitch().atIndex(0).tap();
@@ -26,7 +32,11 @@ export default class GeneralSettingsPage {
     await tapByElement(this.getEnterLanguageMenu());
   }
 
-  async selectFrenchLanguage() {
-    await tapByElement(this.frenchButton());
+  async selectLanguage(lang: string) {
+    await tapByText(lang);
+  }
+
+  async isItLocalized(lang: string) {
+    await expect(this.getEnterLanguageMenu).toHaveText(lang);
   }
 }
