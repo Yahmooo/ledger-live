@@ -35,8 +35,4 @@ export default class GeneralSettingsPage {
   async selectLanguage(lang: string) {
     await tapByText(lang);
   }
-
-  async isItLocalized(lang: string) {
-    await expect(this.getEnterLanguageMenu).toHaveText(lang);
-  }
 }
