@@ -51,6 +51,7 @@ export type SettingsNavigatorStackParamList = {
   [ScreenName.DebugHttpTransport]: undefined;
   [ScreenName.DebugLogs]: undefined;
   [ScreenName.DebugLottie]: undefined;
+  [ScreenName.DebugVideos]: undefined;
   [ScreenName.BenchmarkQRStream]: undefined;
   [ScreenName.OnboardingLanguage]: undefined;
   [ScreenName.PostOnboardingDebugScreen]: undefined;
