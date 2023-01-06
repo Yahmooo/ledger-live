@@ -44,6 +44,8 @@ export enum ScreenName {
   DebugLottie = "DebugLottie",
   DebugMockGenerateAccounts = "DebugMockGenerateAccounts",
   DebugNetwork = "DebugNetwork",
+  DebugPlayground = "DebugPlayground",
+  DebugPermissions = "DebugPermissions",
   DebugSettings = "DebugSettings",
   DebugStore = "DebugStore",
   DebugStoryly = "DebugStoryly",
