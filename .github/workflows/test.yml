@@ -185,12 +185,12 @@ jobs:
             };
 
             const summary = `### Test documentation files
-            ${status.doc.pass ? "Documentation files are fine" : "Documentation files are outdated"}
-              - ${status.doc.pass ? "✅" : "❌"} **Test documentation files** ended with status \`${status.doc.status}\`
+            ${statuses.doc.pass ? "Documentation files are fine" : "Documentation files are outdated"}
+              - ${statuses.doc.pass ? "✅" : "❌"} **Test documentation files** ended with status \`${statuses.doc.status}\`
 
             ### Test CLI
-            ${status.cli.pass ? "CLI tests are successful" : "CLI tests did not end successfully"}
-              - ${status.cli.pass ? "✅" : "❌"} **CLI tests** ended with status \`${status.cli.status}\`
+            ${statuses.cli.pass ? "CLI tests are successful" : "CLI tests did not end successfully"}
+              - ${statuses.cli.pass ? "✅" : "❌"} **CLI tests** ended with status \`${statuses.cli.status}\`
             `;
 
             const actions = [];
