@@ -195,7 +195,8 @@ jobs:
 
             const actions = [];
 
-            if (${{ needs.test-docs.outputs.fail == '1' }}) {
+            // TEMP: DROP COMMIT
+            // if (${{ needs.test-docs.outputs.fail == '1' }}) {
               actions.push({
                 // 20 chars max
                 label: "Regen. Doc Files",
@@ -204,7 +205,8 @@ jobs:
                 // 40 chars max
                 description: "Will regenerate documentation files for ljs",
               });
-            }
+            // }
+            // END TEMP
 
             const output = {
               summary,
