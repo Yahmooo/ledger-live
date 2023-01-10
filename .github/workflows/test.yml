@@ -213,7 +213,7 @@ jobs:
               actions
             };
 
-            fs.writeFileSync("summary.json", JSON.stringify(data), "utf-8");
+            fs.writeFileSync("summary.json", JSON.stringify(output), "utf-8");
       - uses: actions/upload-artifact@v3
         name: Upload output
         with:
