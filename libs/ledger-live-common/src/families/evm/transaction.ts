@@ -1,6 +1,10 @@
+import { ethers } from "ethers";
 import { BigNumber } from "bignumber.js";
-import type { Account } from "@ledgerhq/types-live";
+import type { Account, TokenAccount } from "@ledgerhq/types-live";
 import type {
+  EvmTransactionEIP1559,
+  EvmTransactionLegacy,
+  FeeData,
   Transaction as EvmTransaction,
   TransactionRaw as EvmTransactionRaw,
 } from "./types";
@@ -11,9 +15,10 @@ import {
   toTransactionCommonRaw,
   toTransactionStatusRawCommon as toTransactionStatusRaw,
 } from "../../transaction/common";
+import ERC20ABI from "./abis/erc20.abi.json";
 import { getAccountUnit } from "../../account";
-import { formatCurrencyUnit } from "../../currencies";
 import { getTransactionCount } from "./api/rpc";
+import { formatCurrencyUnit } from "../../currencies";
 
 /**
  * Format the transaction for the CLI
@@ -122,6 +127,46 @@ export const transactionToUnsignedTransaction = async (
     ...tx,
     nonce,
   };
+};
+
+export const getTransactionData = (
+  transaction: EvmTransaction
+): Buffer | undefined => {
+  const contract = new ethers.utils.Interface(ERC20ABI);
+  console.warn("transaction.amount", transaction.amount.toFixed());
+  const data = contract.encodeFunctionData("transfer", [
+    transaction.recipient,
+    transaction.amount.toFixed(),
+  ]);
+
+  console.warn({ data });
+
+  return data ? Buffer.from(data.slice(2), "hex") : undefined;
+};
+
+export const getTypedTransaction = (
+  transaction: EvmTransaction,
+  feeData: FeeData
+): EvmTransaction => {
+  // If the blockchain is supporting EIP-1559, use maxFeePerGas & maxPriorityFeePerGas
+  if (feeData.maxFeePerGas && feeData.maxPriorityFeePerGas) {
+    delete transaction.gasPrice;
+    return {
+      ...transaction,
+      maxFeePerGas: feeData.maxFeePerGas || undefined,
+      maxPriorityFeePerGas: feeData.maxPriorityFeePerGas || undefined,
+      type: 2,
+    } as EvmTransactionEIP1559;
+  }
+
+  // Else just use a legacy transaction
+  delete transaction.maxFeePerGas;
+  delete transaction.maxPriorityFeePerGas;
+  return {
+    ...transaction,
+    gasPrice: feeData.gasPrice || new BigNumber(0),
+    type: 0,
+  } as EvmTransactionLegacy;
 };
 
 export default {

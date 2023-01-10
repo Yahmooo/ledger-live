@@ -74,6 +74,8 @@ const getAdditionalDataForContract = async (
       erc20SignaturesBlob
     );
 
+    console.warn({ erc20Info });
+
     if (erc20Info) {
       log(
         "ethereum",
