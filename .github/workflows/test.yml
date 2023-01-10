@@ -203,7 +203,7 @@ jobs:
                 // 20 chars max
                 identifier: "regen_doc",
                 // 40 chars max
-                description: "Will regenerate documentation files for ljs",
+                description: "Will regenerate doc files for ljs",
               });
             // }
             // END TEMP
